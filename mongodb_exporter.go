@@ -4,14 +4,16 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
-	"github.com/Percona-Lab/prometheus_mongodb_exporter/collector"
-	"github.com/Percona-Lab/prometheus_mongodb_exporter/shared"
 	"io/ioutil"
+	"mongodb_exporter/collector"
+	"mongodb_exporter/shared"
 	"net/http"
 	"os"
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+
 	"gopkg.in/yaml.v2"
 )
 
@@ -100,7 +102,7 @@ func prometheusHandler() http.Handler {
 		cfg.Password = data[1]
 	}
 
-	handler := prometheus.Handler()
+	handler := promhttp.Handler()
 	if cfg.User != "" && cfg.Password != "" {
 		handler = &basicAuthHandler{handler: handler.ServeHTTP, user: cfg.User, password: cfg.Password}
 		fmt.Println("HTTP basic authentication is enabled")

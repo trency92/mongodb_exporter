@@ -1,9 +1,9 @@
 package collector
 
 import (
+	"mongodb_exporter/shared"
 	"testing"
 
-	"github.com/Percona-Lab/prometheus_mongodb_exporter/shared"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

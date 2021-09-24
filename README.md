@@ -1,6 +1,7 @@
 # Mongodb Exporter
 
 Based on MongoDB exporter for prometheus.io, written in go (https://github.com/dcu/mongodb_exporter), but forked for full sharded support and structure changes.
+Forked from https://github.com/ese/mongodb_exporter
 
 ### Experimental
 
@@ -18,6 +19,13 @@ The exporter is in beta/experimental state and field names are **very likely to 
 ### Building
 
     go build -o mongodb_exporter github.com/Percona-Lab/prometheus_mongodb_exporter
+
+#### windows
+
+    set CGO_ENABLED=0
+    set GOOS=linux
+    set GOARCH=arm64
+    go build -trimpath -o mongodb_exporter
 
 ### Usage
 
